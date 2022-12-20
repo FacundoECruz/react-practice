@@ -1,18 +1,29 @@
 import "./App.css";
-import List from './components/List'
 
 function Input() {
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const value = event.target.elements.name.value
+  }
+
   return (
     <div className="input-form">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name: </label>
-        <input id="name"></input>
+        <input id="name" type='text'></input>
         <div className="input-button">
-            <button>Add Name</button>
+            <button type="submit">Add Name</button>
         </div>
       </form>
     </div>
   );
+}
+
+function List() {
+  return(
+    <li></li>
+  )
 }
 
 function App() {
