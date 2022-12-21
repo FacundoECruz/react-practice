@@ -1,42 +1,37 @@
 import React from "react";
 import "./App.css";
 
-function Input({ handleSubmit }) {
+function Board() {
+  function renderButton(i) {
+    return <button>Boton</button>;
+  }
+
   return (
-    <div className="input-form">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name: </label>
-        <input id="name" type="text" name="name"></input>
-        <div className="input-button">
-          <button type="submit">Add Name</button>
-        </div>
-      </form>
+    <div>
+      <div className="board-row">
+        {renderButton(0)}
+        {renderButton(1)}
+        {renderButton(2)}
+      </div>
+      <div className="board-row">
+        {renderButton(0)}
+        {renderButton(1)}
+        {renderButton(2)}
+      </div>
+      <div className="board-row">
+        {renderButton(0)}
+        {renderButton(1)}
+        {renderButton(2)}
+      </div>
     </div>
   );
 }
 
-function Display({ name }) {
-  
-  return (
-    <h1>{name}</h1>
-  );
-}
-
 function App() {
-  const [name, setName] = React.useState("");
-  const [display, setDisplay] = React.useState("");
-
   return (
     <div className="App">
-      <h1>React Practice</h1>
-      <Input
-        name={name}
-        handleSubmit={(event) => {
-          event.preventDefault();
-          setDisplay(event.target.name.value);
-        }}
-      />
-      <Display name={display} />
+      <h1>Button History</h1>
+      <Board />
     </div>
   );
 }
