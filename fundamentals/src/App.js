@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 
-function Board() {
+function Board({onClick}) {
   function renderButton(i) {
-    return <button>Boton</button>;
+    return <button onClick={() => onClick(i)}>Boton {i}</button>;
   }
 
   return (
@@ -14,24 +14,43 @@ function Board() {
         {renderButton(2)}
       </div>
       <div className="board-row">
-        {renderButton(0)}
-        {renderButton(1)}
-        {renderButton(2)}
+        {renderButton(4)}
+        {renderButton(5)}
+        {renderButton(6)}
       </div>
       <div className="board-row">
-        {renderButton(0)}
-        {renderButton(1)}
-        {renderButton(2)}
+        {renderButton(7)}
+        {renderButton(8)}
+        {renderButton(9)}
       </div>
     </div>
   );
 }
 
+
 function App() {
+
+  const [currentStep, setCurrentStep] = React.useState(0)
+  const [history, setHistory] = React.useState([Array(9).fill(null)])
+
+  const currentButton = history[currentStep]
+
+  function selectButton(index) {
+    const newHistory = history.slice(0, currentStep + 1)
+    const buttonsCopy = [...currentButton]
+    buttonsCopy[index] = "X"
+    
+    setHistory([...newHistory, buttonsCopy])
+    setCurrentStep(newHistory.length)
+  }
+
   return (
     <div className="App">
       <h1>Button History</h1>
-      <Board />
+      <Board onClick={selectButton} button={currentButton}/>
+      <div>
+        {/* <ol>{clicks}</ol> */}
+      </div>
     </div>
   );
 }
