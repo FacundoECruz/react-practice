@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-function Board({onClick}) {
+function Board({ onClick }) {
   function renderButton(i) {
     return <button onClick={() => onClick(i)}>Boton {i}</button>;
   }
@@ -27,30 +27,38 @@ function Board({onClick}) {
   );
 }
 
-
 function App() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [history, setHistory] = React.useState([Array(9).fill(null)]);
 
-  const [currentStep, setCurrentStep] = React.useState(0)
-  const [history, setHistory] = React.useState([Array(9).fill(null)])
-
-  const currentButton = history[currentStep]
+  const currentButton = history[currentStep];
 
   function selectButton(index) {
-    const newHistory = history.slice(0, currentStep + 1)
-    const buttonsCopy = [...currentButton]
-    buttonsCopy[index] = "X"
-    
-    setHistory([...newHistory, buttonsCopy])
-    setCurrentStep(newHistory.length)
+    const newHistory = history.slice(0, currentStep + 1);
+    const buttonsCopy = [...currentButton];
+    buttonsCopy[index] = "X";
+
+    setHistory([...newHistory, buttonsCopy]);
+    setCurrentStep(newHistory.length);
   }
+
+  const clicks = history.map((stepButtons, step) => {
+    const desc = step === 0 ? "Go to game start" : `Go to click #${step}`;
+    const isCurrentStep = step === currentStep;
+    return (
+      <li key={step}>
+        <button disabled={isCurrentStep} onClick={() => setCurrentStep(step)}>
+          {desc} {isCurrentStep ? "(current)" : null}
+        </button>
+      </li>
+    );
+  });
 
   return (
     <div className="App">
       <h1>Button History</h1>
-      <Board onClick={selectButton} button={currentButton}/>
-      <div>
-        {/* <ol>{clicks}</ol> */}
-      </div>
+      <Board onClick={selectButton} button={currentButton} />
+      <div><ol>{clicks}</ol></div>
     </div>
   );
 }
