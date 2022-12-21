@@ -5,16 +5,17 @@ function Input() {
   
   const [input, setInput] = React.useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setInput(event.target[0].value)
+  const handleChange = (event) => {
+    setInput(event.target.value)
   }
 
+  
+  
   return (
     <div className="input-form">
       <form>
         <label htmlFor="name">Name: </label>
-        <input id="name" type="text" onChange={handleSubmit}></input>
+        <input id="name" type="text" onChange={handleChange}></input>
         <div className="input-button">
             <button type="submit">Add Name</button>
         </div>
