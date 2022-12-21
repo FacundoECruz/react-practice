@@ -1,48 +1,41 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
 
-function Input() {
-  
-  const [input, setInput] = React.useState('')
-
-  const handleChange = (event) => {
-    setInput(event.target.value)
-  }
-
-  
-  
+function Input({ name, onNameChange, handleSubmit }) {
   return (
     <div className="input-form">
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name: </label>
-        <input id="name" type="text" onChange={handleChange}></input>
+        <input id="name" type="text" name="name" onChange={onNameChange}></input>
         <div className="input-button">
-            <button type="submit">Add Name</button>
+          <button type="submit">Add Name</button>
         </div>
       </form>
-      {input ? <strong>Name: {input}</strong> : 'Type the name here'}
     </div>
   );
 }
 
-// function List() {
-
-//   const [list, setList] = React.useState(Array)
-
-//   return(
-//     <li></li>
-//   )
-// }
+function Display({ list }) {
+  console.log(list)
+}
 
 function App() {
+  const [name, setName] = React.useState("");
+  const [display, setDisplay] = React.useState(Array);
 
-  const onSubmitName = value => alert(`Name: ${value}`)
-
-  return <div className="App">
-    <h1>React Practice</h1>
-    <Input onSubmitName={onSubmitName}/>
-    {/* <List /> */}
-  </div>;
+  return (
+    <div className="App">
+      <h1>React Practice</h1>
+      <Input
+        name={name}
+        onNameChange={(event) => setName(event.target.value)}
+        handleSubmit={(event) => {
+          event.preventDefault()
+          setDisplay(event.target.name.value)}}
+      />
+      <Display name={name} list={display} />
+    </div>
+  );
 }
 
 export default App;
