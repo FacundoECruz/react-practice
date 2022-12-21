@@ -12,9 +12,9 @@ function Input() {
 
   return (
     <div className="input-form">
-      <form onSubmit={handleSubmit}>
+      <form>
         <label htmlFor="name">Name: </label>
-        <input id="name" type='text'></input>
+        <input id="name" type="text" onChange={handleSubmit}></input>
         <div className="input-button">
             <button type="submit">Add Name</button>
         </div>
