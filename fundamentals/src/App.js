@@ -20,7 +20,9 @@ function Greeting({ name, city, age }) {
   return (
     <div className="greeting">
       <h1>Hola {name}</h1>
-      <h3>Porque a los {age}, siendo de {city}</h3>
+      <h3>
+        Porque a los {age}, siendo de {city}
+      </h3>
       <h2>Sos de {club}</h2>
       <button onClick={handleClick}>Club</button>
     </div>

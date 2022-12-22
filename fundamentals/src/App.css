@@ -1,0 +1,16 @@
+html, body {
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #76C893;
+}
+
+.greeting {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    background-color: #D9ED92;
+    justify-content: center;
+    align-items: center;
+}
