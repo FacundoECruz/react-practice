@@ -1,23 +1,27 @@
 import React from "react";
 import "./App.css";
 
-function Button({onClick}) {
+function Button({ onClick }) {
+  const [clicks, setClicks] = React.useState(0);
 
-  const [clicks, setClicks] = React.useState(0)
-
-  function handleClick(event) {
-    setClicks(clicks + 1)
+  function handleClick() {
+    setClicks(clicks + 1);
   }
 
-  return(
-    <button onClick={handleClick}>{clicks}</button>
-  )
+  function handleReset() {
+    setClicks(0);
+  }
+
+  return (
+    <div className="container">
+      <button onClick={handleClick}>{clicks}</button>
+      <button onClick={handleReset}>Reset</button>
+    </div>
+  );
 }
 
 function App() {
-  return (
-    <Button />
-  )
+  return <Button />;
 }
 
 export default App;

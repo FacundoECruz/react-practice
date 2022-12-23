@@ -1,16 +1,20 @@
-html, body {
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #76C893;
+html,
+body {
+  padding: 0;
+  box-sizing: border-box;
+  background-color: aquamarine;
 }
 
-.greeting {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    background-color: #D9ED92;
-    justify-content: center;
-    align-items: center;
+button {
+  width: 60px;
+  height: 40px;
+}
+
+.container {
+  width: 600px;
+  height: 400px;
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
