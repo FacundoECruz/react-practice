@@ -12,16 +12,27 @@ const TableHeader = () => {
   );
 };
 
-const TableBody = ({characterData}) => {
-  const rows = characterData.map((row, index) => {
+const TableBody = ({ characterData }) => {
+  const [people, setPeople] = React.useState(characterData);
+
+  function removeCharacter(index) {
+    
+    setPeople(people.slice(index, 1));
+
+  }
+
+  const rows = people.map((row, index) => {
     return (
       <tr key={index}>
         <td>{row.name}</td>
         <td>{row.job}</td>
+        <td>
+          <button onClick={() => removeCharacter(index)}>Delete</button>
+        </td>
       </tr>
-    )
-  })
-  return <tbody>{rows}</tbody>
+    );
+  });
+  return <tbody>{rows}</tbody>;
 };
 
 function App() {
@@ -44,11 +55,14 @@ function App() {
     },
   ];
 
+
   return (
     <div className="container">
       <table>
         <TableHeader />
-        <TableBody characterData={characters} />
+        <TableBody
+          characterData={characters}
+        />
       </table>
     </div>
   );
