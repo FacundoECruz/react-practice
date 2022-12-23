@@ -9,39 +9,49 @@ const TableHeader = () => {
         <th>Job</th>
       </tr>
     </thead>
-  )
-}
+  );
+};
 
-const TableBody = () => {
-  return (
-    <tbody>
-      <tr>
-        <td>Charlie</td>
-        <td>Janitor</td>
+const TableBody = ({characterData}) => {
+  const rows = characterData.map((row, index) => {
+    return (
+      <tr key={index}>
+        <td>{row.name}</td>
+        <td>{row.job}</td>
       </tr>
-      <tr>
-        <td>Mac</td>
-        <td>Bouncer</td>
-      </tr>
-      <tr>
-        <td>Dee</td>
-        <td>Aspiring actress</td>
-      </tr>
-      <tr>
-        <td>Dennis</td>
-        <td>Bartender</td>
-      </tr>
-    </tbody>
-  )
-}
+    )
+  })
+  return <tbody>{rows}</tbody>
+};
 
 function App() {
+  const characters = [
+    {
+      name: "Charlie",
+      job: "Janitor",
+    },
+    {
+      name: "Mac",
+      job: "Bouncer",
+    },
+    {
+      name: "Dee",
+      job: "Aspring actress",
+    },
+    {
+      name: "Dennis",
+      job: "Bartender",
+    },
+  ];
+
   return (
     <div className="container">
-      <TableHeader />
-      <TableBody />
+      <table>
+        <TableHeader />
+        <TableBody characterData={characters} />
+      </table>
     </div>
-  ); 
+  );
 }
 
 export default App;
