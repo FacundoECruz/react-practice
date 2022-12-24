@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 
-function CheckIn() {
-  const [name, setName] = React.useState("");
+function CheckIn(intialValue = "") {
+  const [name, setName] = React.useState(intialValue);
 
   function handleChange(event) {
     setName(event.target.value)
@@ -20,7 +20,7 @@ function CheckIn() {
 }
 
 function App() {
-  return <CheckIn />;
+  return <CheckIn intialValue="Anastasia"/>;
 }
 
 export default App;
