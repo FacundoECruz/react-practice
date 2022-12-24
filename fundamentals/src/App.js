@@ -1,71 +1,26 @@
 import React from "react";
 import "./App.css";
 
-const TableHeader = () => {
-  return (
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Job</th>
-      </tr>
-    </thead>
-  );
-};
+function CheckIn() {
+  const [name, setName] = React.useState("");
 
-const TableBody = ({ characterData }) => {
-  const [people, setPeople] = React.useState(characterData);
-
-  function removeCharacter(index) {
-    
-    setPeople(people.slice(index, 1));
-
+  function handleChange(event) {
+    setName(event.target.value)
   }
-
-  const rows = people.map((row, index) => {
-    return (
-      <tr key={index}>
-        <td>{row.name}</td>
-        <td>{row.job}</td>
-        <td>
-          <button onClick={() => removeCharacter(index)}>Delete</button>
-        </td>
-      </tr>
-    );
-  });
-  return <tbody>{rows}</tbody>;
-};
+  
+  return (
+    <div>
+      <form>
+        <label htmlFor="name">Name: </label>
+        <input id="name" onChange={handleChange}/>
+      </form>
+      {name ? <p>Hola {name}</p> : 'Enter your name here'}
+    </div>
+  )
+}
 
 function App() {
-  const characters = [
-    {
-      name: "Charlie",
-      job: "Janitor",
-    },
-    {
-      name: "Mac",
-      job: "Bouncer",
-    },
-    {
-      name: "Dee",
-      job: "Aspring actress",
-    },
-    {
-      name: "Dennis",
-      job: "Bartender",
-    },
-  ];
-
-
-  return (
-    <div className="container">
-      <table>
-        <TableHeader />
-        <TableBody
-          characterData={characters}
-        />
-      </table>
-    </div>
-  );
+  return <CheckIn />;
 }
 
 export default App;
