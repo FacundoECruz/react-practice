@@ -12,7 +12,7 @@ function CheckIn() {
     <div>
       <form>
         <label htmlFor="name">Name: </label>
-        <input id="name" onChange={handleChange}/>
+        <input value={name} id="name" onChange={handleChange}/>
       </form>
       {name ? <p>Hola {name}</p> : 'Enter your name here'}
     </div>
