@@ -12,7 +12,7 @@ function Child() {
   )
 }
 
-function Element({showChild, setShowChild}) {
+function Element({showChild, updater}) {
   return (
     <div>
       <form>
@@ -21,7 +21,7 @@ function Element({showChild, setShowChild}) {
         id="show" 
         type="checkbox" 
         checked={showChild}
-        onChange={e => setShowChild(e.target.checked)} />
+        onChange={e => updater(e.target.checked)} />
       </form>
       <div
         style={{
@@ -41,7 +41,6 @@ function Element({showChild, setShowChild}) {
 function App() {
 
   const [showChild, setShowChild] = React.useState(() => {
-    console.log("%cApp: useState(() => false)", "color: tomato");
     return false;
   });
 
