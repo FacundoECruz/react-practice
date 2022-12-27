@@ -1,26 +1,51 @@
 import React from "react";
 import "./App.css";
 
-function CheckIn(intialValue = "") {
-  const [name, setName] = React.useState(intialValue);
+function Child() {
 
-  function handleChange(event) {
-    setName(event.target.value)
-  }
-  
-  return (
-    <div>
-      <form>
-        <label htmlFor="name">Name: </label>
-        <input value={name} id="name" onChange={handleChange}/>
-      </form>
-      {name ? <p>Hola {name}</p> : 'Enter your name here'}
-    </div>
+  const [count, setCount] = React.useState(() => {return 0})
+
+  return(
+    <button onClick={() => setCount(previousCount => previousCount + 1)}>
+      {count}
+    </button>
   )
 }
 
+function Element({showChild, setShowChild}) {
+  return (
+    <div>
+      <form>
+        <label htmlFor="show">Show Child</label>
+        <input 
+        id="show" 
+        type="checkbox" 
+        checked={showChild}
+        onChange={e => setShowChild(e.target.checked)} />
+      </form>
+      <div
+        style={{
+          padding: 10,
+          margin: 10,
+          height: 50,
+          width: 50,
+          border: "solid",
+        }}
+      >
+        {showChild ? <Child /> : null}
+      </div>
+    </div>
+  );
+}
+
 function App() {
-  return <CheckIn intialValue="Anastasia"/>;
+
+  const [showChild, setShowChild] = React.useState(() => {
+    console.log("%cApp: useState(() => false)", "color: tomato");
+    return false;
+  });
+
+  return <Element showChild={showChild} updater={setShowChild}/>;
 }
 
 export default App;
