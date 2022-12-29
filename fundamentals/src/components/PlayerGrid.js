@@ -1,5 +1,10 @@
+import React from "react";
+
 function PlayerGrid({ name }) {
 
+  const [bet, setBet] = React.useState(0)
+  const [lose, setLose] = React.useState(0)
+  
   return (
     <div className="player-info-container">
       <h1>{name}</h1>
@@ -8,14 +13,14 @@ function PlayerGrid({ name }) {
           <button>+</button>
           <button>-</button>
         </div>
-        <div className="bet-display">3</div>
+        <div className="bet-display">{bet}</div>
       </div>
       <div className="lose">
         <div className="lose-buttons">
           <button>+</button>
           <button>-</button>
         </div>
-        <div className="lose-display">0</div>
+        <div className="lose-display">{lose}</div>
       </div>
     </div>
   );
