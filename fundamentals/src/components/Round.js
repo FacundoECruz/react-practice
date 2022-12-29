@@ -1,4 +1,5 @@
 import React from "react";
+import PlayerGrid from "./PlayerGrid.js"
 
 function Round() {
   const cardsPerRound = JSON.parse(window.localStorage.getItem("cards"))
@@ -7,12 +8,15 @@ function Round() {
   const [round, setRound] = React.useState(1);
   const [cardsInCurrent, setCardsInCurrent] = React.useState(cardsPerRound[0]);
 
-  console.log(cardsInCurrent)
 
   return (
     <div className="round-container">
       <h2>Ronda {round}</h2>
       <h3>Cartas: {cardsInCurrent}</h3>
+      <div className="player-grids-container">
+        <h3>Render Array of Components Here</h3>
+      </div>
+    
     </div>
   );
 }
