@@ -13,7 +13,6 @@ function Round() {
       <h2>Ronda {round}</h2>
       <h3>Cartas: {cardsInCurrent}</h3>
       <div className="player-grids-container">
-        <h3>Render Array of Components Here</h3>
         {players.map((player) =>
         <PlayerGrid name={player.name}/>
         )}
