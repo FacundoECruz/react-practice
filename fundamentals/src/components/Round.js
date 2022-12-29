@@ -8,6 +8,12 @@ function Round() {
   const [round, setRound] = React.useState(1);
   const [cardsInCurrent, setCardsInCurrent] = React.useState(cardsPerRound[0]);
 
+  const showResults = () => {
+    setRound(round+1)
+    setCardsInCurrent(cardsPerRound[round])
+    console.log(cardsInCurrent)
+  }
+
   return (
     <div className="round-container">
       <h2>Ronda {round}</h2>
@@ -17,6 +23,7 @@ function Round() {
         <PlayerGrid name={player.name}/>
         )}
       </div>
+      <button onClick={showResults}>Resultados</button>
     </div>
   );
 }
