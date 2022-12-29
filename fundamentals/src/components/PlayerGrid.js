@@ -1,4 +1,4 @@
-function PlayerGrid(name) {
+function PlayerGrid({name}) {
     return(
         <h1>{name}</h1>
     )
