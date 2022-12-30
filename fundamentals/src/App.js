@@ -1,14 +1,10 @@
 import React from "react";
 import "./App.css";
-import Round from "./components/Round.js";
-import Table from "./components/Table";
+import Game from "./components/Game";
 
 function App() {
   return (
-    <div className="main-container">
-      <Round />
-      <Table />
-    </div>
+      <Game />
   );
 }
 
