@@ -1,6 +1,7 @@
 import React from "react";
+import "../stylesheets/Game.css";
 
-function PlayerGrid({ name, nextRound }) {
+function PlayerGrid({ name }) {
   const [control, setControl] = React.useState({
     bet: 0,
     lose: 0,
@@ -20,33 +21,31 @@ function PlayerGrid({ name, nextRound }) {
   const saveResults = (name, score) => {
     const roundScore = {
       name: name,
-      score: score
-    }
-    window.localStorage.setItem('score', JSON.stringify(roundScore))
-  }
+      score: score,
+    };
+    window.localStorage.setItem("score", JSON.stringify(roundScore));
+  };
 
   return (
     <div className="player-info-container">
       <h1>
         {name} {control.score}
       </h1>
-      <div className="bet">
-        <div className="bet-buttons">
-          <button onClick={() => handleControl("bet", "up")}>+</button>
-          <button onClick={() => handleControl("bet", "down")}>-</button>
+      <div className="controls">
+        <div className="bet">
           <span>Apuesta</span>
+          <button className="up-button" onClick={() => handleControl("bet", "up")}>+</button>
+          <button className="down-button" onClick={() => handleControl("bet", "down")}>-</button>
+          <div className="bet-display">{control.bet}</div>
         </div>
-        <div className="bet-display">{control.bet}</div>
-      </div>
-      <div className="lose">
-        <div className="lose-buttons">
-          <button onClick={() => handleControl("lose", "up")}>+</button>
-          <button onClick={() => handleControl("lose", "down")}>-</button>
+        <div className="lose">
           <span>Pierde</span>
+          <button className="up-button" onClick={() => handleControl("lose", "up")}>+</button>
+          <button className="down-button" onClick={() => handleControl("lose", "down")}>-</button>
+          <div className="lose-display">{control.lose}</div>
         </div>
-        <div className="lose-display">{control.lose}</div>
       </div>
-    <button onClick={saveResults}>Resultados</button>
+      <button className="save-button" onClick={saveResults}>Resultados</button>
     </div>
   );
 }
@@ -69,7 +68,7 @@ function Round() {
       <h3>Cartas: {cardsInCurrent}</h3>
       <div className="player-grids-container">
         {players.map((player) => (
-          <PlayerGrid name={player.name} nextRound={nextRound}/>
+          <PlayerGrid name={player.name} />
         ))}
       </div>
       <button onClick={nextRound}>Siguiente Ronda</button>

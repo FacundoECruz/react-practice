@@ -1,0 +1,49 @@
+.round-container {
+    width: 60%;
+    height: 80%;
+    background-color: #94D2BD;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.player-grids-container {
+    background-color: #005F73;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.player-info-container{
+    width: 40%;
+    border: 2px solid black;
+    padding: 2%;
+}
+
+h1 {
+    color: #fff;
+}
+
+h2, h3 {
+    color: #001219
+}
+
+span {
+    color: #9B2226;
+}
+
+.player-info-container {
+    background-color: #EE9B00;
+}
+
+.up-button {
+    background-color: rgb(127, 229, 127);
+}
+
+.down-button {
+    background-color: rgb(247, 81, 81);
+}
+
+.save-button {
+    background-color: #94D2BD;
+    font-family: 'Times New Roman', Times, serif;
+}
