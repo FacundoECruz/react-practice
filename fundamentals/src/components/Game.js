@@ -33,16 +33,24 @@ function PlayerGrid({ name }) {
       </h1>
       <div className="controls">
         <div className="bet">
-          <span>Apuesta</span>
-          <button className="up-button" onClick={() => handleControl("bet", "up")}>+</button>
-          <button className="down-button" onClick={() => handleControl("bet", "down")}>-</button>
-          <div className="bet-display">{control.bet}</div>
+          <div className="num-display">
+            <span>Apuesta</span>
+            <div className="bet-display">{control.bet}</div>
+          </div>
+          <div className="buttons">
+            <button className="up-button" onClick={() => handleControl("bet", "up")}>+</button>
+            <button className="down-button" onClick={() => handleControl("bet", "down")}>-</button>
+          </div>
         </div>
         <div className="lose">
-          <span>Pierde</span>
-          <button className="up-button" onClick={() => handleControl("lose", "up")}>+</button>
-          <button className="down-button" onClick={() => handleControl("lose", "down")}>-</button>
-          <div className="lose-display">{control.lose}</div>
+          <div className="num-display">
+            <span>Pierde</span>
+            <div className="lose-display">{control.lose}</div>
+          </div>
+          <div className="buttons">
+            <button className="up-button" onClick={() => handleControl("lose", "up")}>+</button>
+            <button className="down-button" onClick={() => handleControl("lose", "down")}>-</button>
+          </div>
         </div>
       </div>
       <button className="save-button" onClick={saveResults}>Resultados</button>
