@@ -18,12 +18,16 @@ function PlayerGrid({ name }) {
     });
   };
 
-  const saveResults = (name, score) => {
-    const roundScore = {
-      name: name,
-      score: score,
-    };
-    window.localStorage.setItem("score", JSON.stringify(roundScore));
+  const saveResults = (e) => {
+    const newScore =
+      parseInt(control.lose) === 0
+        ? control.score + 5 + control.bet
+        : control.score - control.lose;
+    setControl({
+      bet: 0,
+      lose: 0,
+      score: newScore,
+    });
   };
 
   return (
