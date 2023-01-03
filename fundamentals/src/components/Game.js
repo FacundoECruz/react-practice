@@ -4,45 +4,41 @@ import "../stylesheets/Game.css";
 function PlayerGrid({ name, players }) {
 
   const table = [...players]
-
-  const [control, setControl] = React.useState({
-    bet: 0,
-    lose: 0,
-    score: 0,
-  });
-
+  
+  const [control, setControl] = React.useState(table);
+  
   // const [table, setTable] = React.useState(players);
-
+  const currentPlayer = table.findIndex((p) => p.name === name);
+  
   const handleControl = (item, action) => {
     setControl((prevState) => {
       return {
         ...prevState,
-
-        [item]: action === "up" ? control[item] + 1 : control[item] - 1,
+        
+        [item]: action === "up" ? control[currentPlayer][item] + 1 : control[currentPlayer][item] - 1,
       };
     });
   };
-
+  
   const saveResults = (e) => {
     const newScore =
-      parseInt(control.lose) === 0
-        ? control.score + 5 + control.bet
-        : control.score - control.lose;
+      parseInt(control[currentPlayer].lose) === 0
+        ? control[currentPlayer].score + 5 + control[currentPlayer].bet
+        : control[currentPlayer].score - control[currentPlayer].lose;
     const newControl = {
       bet: 0,
       lose: 0,
       score: newScore,
     };
     setControl(newControl);
+    // console.log(control)
 
-    // const currentPlayer = players.findIndex((p) => p.name === name);
     // const tableCopy = [...table]
     // function addScore() {
     //   tableCopy[currentPlayer].score = newScore
     //   return tableCopy
     // }
     // setTable(addScore());
-    // console.log(table)
   }
   return (
     <div className="player-info-container">
