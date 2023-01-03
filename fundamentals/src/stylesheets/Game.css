@@ -1,16 +1,35 @@
+/* Round */
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .round-container {
-    width: 60%;
-    height: 80%;
+    width: 70%;
+    max-height: 80%;
     background-color: #94D2BD;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 }
 
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Player Grids */
+
 .player-grids-container {
     background-color: #005F73;
     display: inline-flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 2%;
 }
 
 .player-info-container{
@@ -27,16 +46,12 @@ h1 {
 }
 
 h2, h3 {
-    color: #001219
+    color: #001219;
 }
 
 span {
-    color: #9B2226;
-    margin: 0 3%;
-}
-
-.player-info-container {
-    background-color: #EE9B00;
+    color: #E9D8A6;
+    margin: 0 7% 0 0;
 }
 
 .up-button {
@@ -60,6 +75,8 @@ span {
 }
 
 .save-button {
+    width: 80px;
+    height: 40px;
     background-color: #94D2BD;
     font-family: 'Times New Roman', Times, serif;
 }

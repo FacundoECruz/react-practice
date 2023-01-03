@@ -38,8 +38,18 @@ function PlayerGrid({ name }) {
             <div className="bet-display">{control.bet}</div>
           </div>
           <div className="buttons">
-            <button className="up-button" onClick={() => handleControl("bet", "up")}>+</button>
-            <button className="down-button" onClick={() => handleControl("bet", "down")}>-</button>
+            <button
+              className="up-button"
+              onClick={() => handleControl("bet", "up")}
+            >
+              +
+            </button>
+            <button
+              className="down-button"
+              onClick={() => handleControl("bet", "down")}
+            >
+              -
+            </button>
           </div>
         </div>
         <div className="lose">
@@ -48,12 +58,24 @@ function PlayerGrid({ name }) {
             <div className="lose-display">{control.lose}</div>
           </div>
           <div className="buttons">
-            <button className="up-button" onClick={() => handleControl("lose", "up")}>+</button>
-            <button className="down-button" onClick={() => handleControl("lose", "down")}>-</button>
+            <button
+              className="up-button"
+              onClick={() => handleControl("lose", "up")}
+            >
+              +
+            </button>
+            <button
+              className="down-button"
+              onClick={() => handleControl("lose", "down")}
+            >
+              -
+            </button>
           </div>
         </div>
       </div>
-      <button className="save-button" onClick={saveResults}>Resultados</button>
+      <button className="save-button" onClick={saveResults}>
+        Resultados
+      </button>
     </div>
   );
 }
@@ -72,14 +94,18 @@ function Round() {
 
   return (
     <div className="round-container">
-      <h2>Ronda {round}</h2>
-      <h3>Cartas: {cardsInCurrent}</h3>
+      <div className="title-container">
+        <h2>Ronda {round}</h2>
+        <h3>Cartas: {cardsInCurrent}</h3>
+      </div>
       <div className="player-grids-container">
         {players.map((player) => (
           <PlayerGrid name={player.name} />
         ))}
       </div>
-      <button onClick={nextRound}>Siguiente Ronda</button>
+      <button className="next-round-button" onClick={nextRound}>
+        Siguiente Ronda
+      </button>
     </div>
   );
 }
