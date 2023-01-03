@@ -1,4 +1,5 @@
 import React from "react";
+import '../stylesheets/PlayerGrid.css'
 
 function PlayerGrid({ name, players }) {
 
