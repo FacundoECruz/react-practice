@@ -1,12 +1,14 @@
 import React from "react";
 import "../stylesheets/Game.css";
 
-function PlayerGrid({ name }) {
+function PlayerGrid({ name, players }) {
   const [control, setControl] = React.useState({
     bet: 0,
     lose: 0,
     score: 0,
   });
+
+  const [table, setTable] = React.useState(players);
 
   const handleControl = (item, action) => {
     setControl((prevState) => {
@@ -23,13 +25,22 @@ function PlayerGrid({ name }) {
       parseInt(control.lose) === 0
         ? control.score + 5 + control.bet
         : control.score - control.lose;
-    setControl({
+    const newControl = {
       bet: 0,
       lose: 0,
       score: newScore,
-    });
-  };
+    };
+    setControl(newControl);
 
+    const currentPlayer = players.findIndex((p) => p.name === name);
+    const tableCopy = [...table]
+    function addScore() {
+      tableCopy[currentPlayer].score = newScore
+      return tableCopy
+    }
+    setTable(addScore());
+    console.log(table)
+  }
   return (
     <div className="player-info-container">
       <h1>
@@ -120,7 +131,7 @@ function Round() {
       </div>
       <div className="player-grids-container">
         {players.map((player) => (
-          <PlayerGrid name={player.name} />
+          <PlayerGrid key={player.name} name={player.name} players={players} />
         ))}
       </div>
       <button className="next-round-button" onClick={nextRound}>
@@ -130,15 +141,10 @@ function Round() {
   );
 }
 
-// function Table() {
-//   return <h1 style={{ color: "blue" }}>Tabla de posiciones</h1>;
-// }
-
 function Game() {
   return (
     <div className="main-container">
       <Round />
-      {/* <Table /> */}
     </div>
   );
 }
