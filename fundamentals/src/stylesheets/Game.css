@@ -11,14 +11,17 @@
     max-height: 80%;
     background-color: #94D2BD;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .title-container {
+    width: 20%;
+    height: 20%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-self: center;
 }
 
 /* Player Grids */
