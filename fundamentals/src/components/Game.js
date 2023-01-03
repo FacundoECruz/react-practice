@@ -33,9 +33,17 @@ function PlayerGrid({ name }) {
       </h1>
       <div className="controls">
         <div className="bet">
-          <div className="num-display">
+          <div className="label-display">
             <span>Apuesta</span>
-            <div className="bet-display">{control.bet}</div>
+            <div
+              className={
+                parseInt(control.bet) === 0
+                  ? "num-display"
+                  : "num-display-active"
+              }
+            >
+              {control.bet}
+            </div>
           </div>
           <div className="buttons">
             <button
@@ -53,9 +61,17 @@ function PlayerGrid({ name }) {
           </div>
         </div>
         <div className="lose">
-          <div className="num-display">
+          <div className="label-display">
             <span>Pierde</span>
-            <div className="lose-display">{control.lose}</div>
+            <div
+              className={
+                parseInt(control.lose) === 0
+                  ? "num-display"
+                  : "num-display-active"
+              }
+            >
+              {control.lose}
+            </div>
           </div>
           <div className="buttons">
             <button

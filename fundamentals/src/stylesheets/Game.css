@@ -25,6 +25,7 @@
 
 .player-grids-container {
     background-color: #005F73;
+    margin: 1% 1%;
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -45,6 +46,10 @@ h1 {
     color: #fff;
 }
 
+h1:hover{ 
+    transform: translate(-2px, -2px);
+}
+
 h2, h3 {
     color: #001219;
 }
@@ -54,12 +59,31 @@ span {
     margin: 0 7% 0 0;
 }
 
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .up-button {
     background-color: rgb(127, 229, 127);
+    width: 40%;
+    border-radius: 20%;
+}
+
+.up-button:hover {
+    background-color: rgb(168, 245, 168);
 }
 
 .down-button {
     background-color: rgb(247, 81, 81);
+    width: 40%;
+    border-radius: 20%;
+}
+
+.down-button:hover {
+    background-color: rgb(240, 119, 119);
 }
 
 .bet, .lose {
@@ -69,9 +93,19 @@ span {
     align-items: flex-start;
 }
 
-.num-display {
+.label-display {
     display: flex;
     flex-direction: row;
+    font-size: 1.1em;
+}
+
+.num-display {
+    font-size: 1.2em;
+}
+
+.num-display-active {
+    font-size: 1.2em;
+    color: #fff;
 }
 
 .save-button {
@@ -79,4 +113,25 @@ span {
     height: 40px;
     background-color: #94D2BD;
     font-family: 'Times New Roman', Times, serif;
+    align-self: center;
+    border-radius: 10%;
+}
+
+.save-button:hover {
+    background-color: #fff;
+}
+
+.next-round-button {
+    width: 80px;
+    height: 40px;
+    align-self: center;
+    margin: 1% 0;
+    border-radius: 10%;
+    color: #fff;
+    background-color: #0A9396;
+}
+
+.next-round-button:hover {
+    color: #000;
+    background-color: #00eeea;
 }
