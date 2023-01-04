@@ -1,11 +1,10 @@
 import React from "react";
 import "../stylesheets/Game.css";
-import Round from "./Round";
 
 function Game() {
   return (
     <div className="main-container">
-      <Round />
+      <h1>Let's React Here</h1>
     </div>
   );
 }
