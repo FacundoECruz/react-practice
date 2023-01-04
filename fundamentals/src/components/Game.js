@@ -1,15 +1,15 @@
 import React from "react";
 import "../stylesheets/Game.css";
 
-function reduceCount(state, newState) {
-  return newState
-}
+const reduceCount = (count, change) => ({...count, ...change})
 
 function Game({initialValue = 0, step = 2}) {
 
-  const [count, setCount] = React.useReducer(reduceCount, initialValue)
-
-  const increment = () => setCount(count + step)
+  const [state, setState] = React.useReducer(reduceCount, {
+    count: initialValue,
+  })
+  const {count} = state 
+  const increment = () => setState({count: count + step})
 
   return <button onClick={increment}>{count}</button>;
 }
