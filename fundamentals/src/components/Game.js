@@ -8,7 +8,7 @@ function gameStateReducer(state, action) {
   switch (action.manage) {
     case "bid": {
       const player = state.game[action.player];
-      player.bid = action.bid;
+      player.bid = player.bid + action.step
       return { ...state, ...player };
     }
     case "lost": {
@@ -36,17 +36,25 @@ function Game() {
   //This will be unnecesary after conect backend
   const [innerRound, setInnerRound] = React.useState(1);
 
-  const handleBidChange = (e) => {
-    setGameState({ manage: "bid", player: e.target.id, bid: e.target.value });
+  const handleControl = (item, action, player) => {
+    if(item === 'bid' && action === 'up') {
+      setGameState({manage: item, player: player, step: 1})
+    }
   };
 
-  const handleLostChange = (e) => {
-    setGameState({
-      manage: "lost",
-      player: e.target.id,
-      bidsLost: e.target.value,
-    });
-  };
+  // const handleBidChange = (e) => {
+  //   console.log("Bid changed")
+  //   // setGameState({ manage: "bid", player: e.target.id, bid: e.target.value });
+  // };
+
+  // const handleLostChange = (e) => {
+  //   console.log("Lost changed")
+  //   // setGameState({
+  //   //   manage: "lost",
+  //   //   player: e.target.id,
+  //   //   bidsLost: e.target.value,
+  //   // });
+  // };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -63,6 +71,8 @@ function Game() {
     window.localStorage.setItem("PlayersRound", JSON.stringify(gameState.game));
   }, [innerRound]);
 
+console.log(gameState.game)
+
   return (
     <div className="main-container">
       <div className="round-info-container">
@@ -77,17 +87,44 @@ function Game() {
                   <label htmlFor={p.key}>Apuesta</label>
                   <input
                     type="number"
+                    className="bid-input"
                     id={p.key}
-                    value={p.bid}
-                    onChange={handleBidChange}
+                    // value={p.bid}
+                    // onChange={handleBidChange}
                   />
+                  <button
+                    className="up-button"
+                    onClick={() => handleControl("bid", "up", p.key)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="down-button"
+                    onClick={() => handleControl("bid", "down", p.key)}
+                  >
+                    -
+                  </button>
+
                   <label htmlFor={p.key}>Pierde</label>
                   <input
                     type="number"
+                    className="bidsLost-input"
                     id={p.key}
-                    value={p.bidsLost}
-                    onChange={handleLostChange}
+                    // value={p.bidsLost}
+                    // onChange={handleLostChange}
                   />
+                  <button
+                    className="up-button"
+                    onClick={() => handleControl("lost", "up", p.key)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="down-button"
+                    onClick={() => handleControl("lost", "down", p.key)}
+                  >
+                    -
+                  </button>
                 </div>
               );
             })}
@@ -110,3 +147,61 @@ function Game() {
 }
 
 export default Game;
+
+// <div className="controls">
+//   <div className="bet">
+//   <div className="label-display">
+
+//     <span>Apuesta</span>
+//     <div
+//       className={
+//         parseInt(control.bet) === 0
+//           ? "num-display"
+//           : "num-display-active"
+//       }
+//     >
+//       {control.bet}
+//     </div>
+//   </div>
+//   <div className="buttons">
+//     <button
+//       className="up-button"
+//       onClick={() => handleControl("bet", "up")}
+//     >
+//       +
+//     </button>
+//     <button
+//       className="down-button"
+//       onClick={() => handleControl("bet", "down")}
+//     >
+//       -
+//     </button>
+//   </div>
+// </div>
+// <div className="lose">
+//   <div className="label-display">
+//     <span>Pierde</span>
+//     <div
+//       className={
+//         parseInt(control.lose) === 0
+//           ? "num-display"
+//           : "num-display-active"
+//       }
+//     >
+//       {control.lose}
+//     </div>
+//   </div>
+//   <div className="buttons">
+//     <button
+//       className="up-button"
+//       onClick={() => handleControl("lose", "up")}
+//     >
+//       +
+//     </button>
+//     <button
+//       className="down-button"
+//       onClick={() => handleControl("lose", "down")}
+//     >
+//       -
+//     </button>
+//     </div>
