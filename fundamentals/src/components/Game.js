@@ -4,18 +4,31 @@ import players from "../javascripts/players";
 
 
 function Game() {
+
+  const [gameState, setGameState] = React.useState(players)
+
+  const handleBetChange = (e) => {
+    console.log(e.target.value)
+  }
+  
+  const handleLostChange = (e) => {
+    console.log(e.target.value)
+  }
+
+
+
   return (
     <div className="main-container">
       <h1>Game</h1>
       <form>
         {players.map((p) => {
           return (
-            <div>
+            <div className="player-display-container">
               <h2>{p.name}</h2>
               <label>Apuesta</label>
-              <input />
+              <input onChange={handleBetChange}/>
               <label>Pierde</label>
-              <input />
+              <input onChange={handleLostChange}/>
             </div>
           );
         })}
