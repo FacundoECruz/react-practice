@@ -2,19 +2,24 @@ import React from "react";
 import "../stylesheets/Game.css";
 import players from "../javascripts/players";
 
-function gameStateReducer(state, action) {}
 
 function Game() {
-
-  const [gameState, setGameState] = React.useReducer(gameStateReducer, {
-    name: players.name,
-    bid: 0,
-    win: false,
-    bidsLost: 0,
-  });
   return (
     <div className="main-container">
       <h1>Game</h1>
+      <form>
+        {players.map((p) => {
+          return (
+            <div>
+              <h2>{p.name}</h2>
+              <label>Apuesta</label>
+              <input />
+              <label>Pierde</label>
+              <input />
+            </div>
+          );
+        })}
+      </form>
     </div>
   );
 }
