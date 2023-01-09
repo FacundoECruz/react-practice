@@ -52,11 +52,14 @@ function Game() {
     })
   }
 
-  console.log(gameState.game) 
+  React.useEffect(() => {
+
+  }, [gameState.round])
 
   return (
     <div className="main-container">
       <h1>Game</h1>
+      <h1>Round: {gameState.round}</h1>
       <form onSubmit={handleSubmit}>
         {players.map((p) => {
           return (
