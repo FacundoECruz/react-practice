@@ -1,25 +1,37 @@
 import React from "react";
 import "../stylesheets/Game.css";
+import players from "../javascripts/players";
 
-function reduceCount(state, action) {
-  switch(action.type) {
-    case 'INCREMENT': {
-      return {count: state.count + action.step}
-    }
-    default: {
-      throw new Error (`Unsupported ${action.type}`)
-    }
-  }
-}
+function gameStateReducer(state, action) {}
 
-function Game({ initialValue = 0, step = 2 }) {
-  const [state, dispatch] = React.useReducer(reduceCount, {
-    count: initialValue,
+function Game() {
+
+  const [gameState, setGameState] = React.useReducer(gameStateReducer, {
+    name: players.name,
+    bid: 0,
+    win: false,
+    bidsLost: 0,
   });
-  const { count } = state;
-  const increment = () => dispatch({type: 'INCREMENT', step})
-
-  return <button onClick={increment}>{count}</button>;
+  return (
+    <div className="main-container">
+      <h1>Game</h1>
+    </div>
+  );
 }
 
 export default Game;
+
+// PlayersRound = [{
+//   name:	"Facu",
+//   bid: 2,
+//   win:	true,
+//   bidsLost: 0
+// },
+// {
+// name:	"Facu",
+//   bid: 2,
+//   win:	true,
+//   bidsLost: 0
+// }]
+
+//SE SUPONE QUE AL BACKEND LE TENGO QUE MANDAR UN ARRAY DE PlayerRound
