@@ -1,28 +1,28 @@
 const gameState = {
   rounds: [
     {
-      current: 1,
-      left: 4,
-      cardsToDeal: 5,
+      current: 2,
+      left: 3,
+      cardsToDeal: 7,
     }
   ],
   status: "inProgress",
   results: [
     {
       name: "Antone",
-      score: 0,
+      score: 6,
     },
     {
       name: "Facu",
-      score: 0,
+      score: -1,
     },
     {
       name: "Chaky",
-      score: 0,
+      score: 10,
     },
     {
       name: "Kevin",
-      score: 0,
+      score: 7,
     },
   ],
 };
