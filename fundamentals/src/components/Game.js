@@ -1,6 +1,7 @@
 import React from "react";
 import "../stylesheets/Game.css";
 import players from "../javascripts/players";
+import dataFromBackend from "../javascripts/dataFromBackend"
 
 function gameStateReducer(state, action) {
   switch (action.manage) {
@@ -27,8 +28,12 @@ function gameStateReducer(state, action) {
 
 function Game() {
   const [gameState, setGameState] = React.useReducer(gameStateReducer, {
+    round: dataFromBackend.rounds[0].current,
+    cardsToDeal: dataFromBackend.rounds[0].cardsToDeal,
     game: players,
   });
+    //This will be unnecesary after conect backend
+  const [innerRound, setInnerRound] = React.useState(1)
 
   const handleBidChange = (e) => {
     setGameState({ manage: "bid", player: e.target.id, bid: e.target.value });
@@ -50,16 +55,18 @@ function Game() {
         return (setGameState({manage: "win", player: p.key}))
       }
     })
+    setInnerRound(innerRound + 1)
   }
 
   React.useEffect(() => {
-
-  }, [gameState.round])
+    window.localStorage.setItem('PlayersRound', JSON.stringify(gameState.game))
+  },[innerRound])
 
   return (
     <div className="main-container">
       <h1>Game</h1>
       <h1>Round: {gameState.round}</h1>
+      <h1>Cartas: {gameState.cardsToDeal}</h1>
       <form onSubmit={handleSubmit}>
         {players.map((p) => {
           return (
@@ -84,18 +91,3 @@ function Game() {
 }
 
 export default Game;
-
-// PlayersRound = [{
-//   name:	"Facu",
-//   bid: 2,
-//   win:	true,
-//   bidsLost: 0
-// },
-// {
-// name:	"Facu",
-//   bid: 2,
-//   win:	true,
-//   bidsLost: 0
-// }]
-
-//SE SUPONE QUE AL BACKEND LE TENGO QUE MANDAR UN ARRAY DE PlayerRound
