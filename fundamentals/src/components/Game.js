@@ -4,15 +4,20 @@ import players from "../javascripts/players";
 
 function gameStateReducer(state, action) {
   switch (action.manage) {
-    case "bet": {
+    case "bid": {
       const player = state.game[action.player];
-      player.bet = action.bet;
+      player.bid = action.bid;
       return { ...state, ...player };
     }
     case "lost": {
       const player = state.game[action.player];
-      player.betsLost = action.betsLost;
+      player.bidsLost = action.bidsLost;
       return { ...state, ...player };
+    }
+    case "win": {
+      const player = state.game[action.player];
+      player.win = true
+      return {...state, ...player}      
     }
     default: {
       throw new Error(`Unsupported action ${action.manage}`);
@@ -25,35 +30,51 @@ function Game() {
     game: players,
   });
 
-  const handleBetChange = (e) => {
-    setGameState({ manage: "bet", player: e.target.id, bet: e.target.value });
-    console.log(gameState)
+  const handleBidChange = (e) => {
+    setGameState({ manage: "bid", player: e.target.id, bid: e.target.value });
   };
 
   const handleLostChange = (e) => {
     setGameState({
       manage: "lost",
       player: e.target.id,
-      betsLost: e.target.value,
+      bidsLost: e.target.value,
     });
-    console.log(gameState)
   };
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    const tablePlayersRound = gameState.game
+    tablePlayersRound.forEach(p => {
+      if(p.bidsLost === 0){
+        return (setGameState({manage: "win", player: p.key}))
+      }
+    })
+  }
+
+  console.log(gameState.game) 
 
   return (
     <div className="main-container">
       <h1>Game</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         {players.map((p) => {
           return (
             <div className="player-display-container">
               <h2>{p.name}</h2>
               <label htmlFor={p.key}>Apuesta</label>
-              <input id={p.key} value={p.bet} onChange={handleBetChange} />
+              <input type='number' id={p.key} value={p.bid} onChange={handleBidChange} />
               <label htmlFor={p.key}>Pierde</label>
-              <input id={p.key} value={p.betsLost} onChange={handleLostChange} />
+              <input
+                type='number'
+                id={p.key}
+                value={p.bidsLost}
+                onChange={handleLostChange}
+              />
             </div>
           );
         })}
+        <button type="submit">Siguiente Ronda</button>
       </form>
     </div>
   );
