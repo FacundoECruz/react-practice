@@ -31,180 +31,75 @@ function App() {
     },
   ];
 
-  const [player0State, setPlayer0State] = React.useState(players[0]);
-  const [player1State, setPlayer1State] = React.useState(players[1]);
-  const [player2State, setPlayer2State] = React.useState(players[2]);
-  const [player3State, setPlayer3State] = React.useState(players[3]);
+  function playersStateReducer(state, action) {
+    console.log("Running reducer!!!")
+    switch (action.manage) {
+      case "bid": {
+        let newState = { ...state };
+        console.log(newState);
+        newState[action.index].bid = newState[action.index].bid + 1;
+        return newState;
+      }
+      case "lost": {
+        let newState = { ...state };
+        newState[action.index].lost = newState[action.index].lost + 1;
+        return newState;
+      }
+      case "resetBid": {
+        let newState = { ...state };
+        newState[action.index].bid = 0;
+        return newState;
+      }
+      case "resetLost": {
+        let newState = { ...state };
+        newState[action.index].lost = 0;
+        return newState;
+      }
+      default: {
+        throw new Error(`This should be impossible ${action.manage}`);
+      }
+    }
+  }
+
+  const [playersState, setPlayersState] = React.useReducer(
+    playersStateReducer,
+    players
+  );
 
   //  console.log(player0State)
-  //  console.log(player1State)
-  //  console.log(player2State)
-  //  console.log(player3State)
-  //  console.log('***********')
 
-  function handlePlayer0BidState() {
-    setPlayer0State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = newState.bid + 1;
-      return newState;
-    });
-  }
+  const handlePlayersBidState = (index) => {
+    setPlayersState({ index: index, manage: "bid" });
+  };
 
-  function handlePlayer0LoseState() {
-    setPlayer0State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = newState.lost + 1;
-      return newState;
-    });
-  }
+  const handlePlayersLoseState = (index) => {
+    setPlayersState({ index: index, manage: "lost" });
+  };
 
-  function resetPlayer0Bid() {
-    setPlayer0State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = 0;
-      return newState;
-    });
-  }
+  const resetPlayersBid = (index) => {
+    setPlayersState({ index: index, manage: "resetBid" });
+  };
 
-  function resetPlayer0Lost() {
-    setPlayer0State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = 0;
-      return newState;
-    });
-  }
-
-  function handlePlayer1BidState() {
-    setPlayer1State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = newState.bid + 1;
-      return newState;
-    });
-  }
-
-  function handlePlayer1LoseState() {
-    setPlayer1State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = newState.lost + 1;
-      return newState;
-    });
-  }
-
-  function resetPlayer1Bid() {
-    setPlayer1State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = 0;
-      return newState;
-    });
-  }
-
-  function resetPlayer1Lost() {
-    setPlayer1State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = 0;
-      return newState;
-    });
-  }
-
-  function handlePlayer2BidState() {
-    setPlayer2State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = newState.bid + 1;
-      return newState;
-    });
-  }
-
-  function handlePlayer2LoseState() {
-    setPlayer2State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = newState.lost + 1;
-      return newState;
-    });
-  }
-
-  function resetPlayer2Bid() {
-    setPlayer2State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = 0;
-      return newState;
-    });
-  }
-
-  function resetPlayer2Lost() {
-    setPlayer2State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = 0;
-      return newState;
-    });
-  }
-
-  function handlePlayer3BidState() {
-    setPlayer3State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = newState.bid + 1;
-      return newState;
-    });
-  }
-
-  function handlePlayer3LoseState() {
-    setPlayer3State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = newState.lost + 1;
-      return newState;
-    });
-  }
-
-  function resetPlayer3Bid() {
-    setPlayer3State((prevState) => {
-      let newState = { ...prevState };
-      newState.bid = 0;
-      return newState;
-    });
-  }
-
-  function resetPlayer3Lost() {
-    setPlayer3State((prevState) => {
-      let newState = { ...prevState };
-      newState.lost = 0;
-      return newState;
-    });
-  }
+  const resetPlayersLost = (index) => {
+    setPlayersState({ index: index, manage: "resetLost" });
+  };
 
   return (
     <div className="App">
       <div className="main-container">
         <Round />
-        <Player
-          state={player0State}
-          setBidState={handlePlayer0BidState}
-          setLoseState={handlePlayer0LoseState}
-          resetBid={resetPlayer0Bid}
-          resetLost={resetPlayer0Lost}
-        />
-
-        <Player
-          state={player1State}
-          setBidState={handlePlayer1BidState}
-          setLoseState={handlePlayer1LoseState}
-          resetBid={resetPlayer1Bid}
-          resetLost={resetPlayer1Lost}
-        />
-
-        <Player
-          state={player2State}
-          setBidState={handlePlayer2BidState}
-          setLoseState={handlePlayer2LoseState}
-          resetBid={resetPlayer2Bid}
-          resetLost={resetPlayer2Lost}
-        />
-
-        <Player
-          state={player3State}
-          setBidState={handlePlayer3BidState}
-          setLoseState={handlePlayer3LoseState}
-          resetBid={resetPlayer3Bid}
-          resetLost={resetPlayer3Lost}
-        />
+        {players.map((p) => {
+          return (
+            <Player
+              state={playersState}
+              setBidState={() => handlePlayersBidState(p.key)}
+              setLoseState={() => handlePlayersLoseState(p.key)}
+              resetBid={() => resetPlayersBid(p.key)}
+              resetLost={() => resetPlayersLost(p.key)}
+              index={p.key}
+            />
+          );
+        })}
       </div>
     </div>
   );
