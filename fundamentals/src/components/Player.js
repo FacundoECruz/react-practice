@@ -4,11 +4,10 @@ function Player({
   setLoseState,
   resetBid,
   resetLost,
-  index
+  index,
 }) {
 
-
-  return (
+    return (
     <div>
       <h2>{state[index].name}</h2>
       <p onClick={resetBid}>Apuesta</p>
@@ -17,7 +16,7 @@ function Player({
       </button>
       <p onClick={resetLost}>Pierde</p>
       <button id="lost" onClick={setLoseState}>
-        {state[index].lost}
+        {state[index].bidsLost}
       </button>
     </div>
   );

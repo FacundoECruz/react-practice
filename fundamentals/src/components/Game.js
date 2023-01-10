@@ -3,23 +3,34 @@ import React from "react";
 import "../stylesheets/Game.css";
 import players from "../javascripts/players";
 import dataFromBackend from "../javascripts/dataFromBackend";
+import Player from "./Player";
 
 function gameStateReducer(state, action) {
   switch (action.manage) {
     case "bid": {
-      const player = state.game[action.player];
-      player.bid = action.bid
-      return { ...state, ...player };
+      let newState = {...state}
+      newState.game[action.index].bid += 1
+      return newState 
     }
     case "lost": {
-      const player = state.game[action.player];
-      player.bidsLost = action.bidsLost;
-      return { ...state, ...player };
+      let newState = {...state}
+      newState.game[action.index].bidsLost += 1
+      return newState 
     }
     case "win": {
       const player = state.game[action.player];
       player.win = true;
       return { ...state, ...player };
+    }
+    case "resetBid": {
+      let newState = {...state}
+      newState.game[action.index].bid = 0
+      return newState 
+    }
+    case "resetLost": {
+      let newState = {...state}
+      newState.game[action.index].bidsLost = 0
+      return newState 
     }
     default: {
       throw new Error(`Unsupported action ${action.manage}`);
@@ -33,19 +44,25 @@ function Game() {
     cardsToDeal: dataFromBackend.rounds[0].cardsToDeal,
     game: players,
   });
+
+  console.log(gameState.game)
   //This will be unnecesary after conect backend
   const [innerRound, setInnerRound] = React.useState(1);
 
-  const handleBidChange = (e) => {
-    setGameState({ manage: "bid", player: e.target.id, bid: e.target.value });
+  const handlePlayersBidState = (index) => {
+    setGameState({ index: index, manage: "bid" });
   };
 
-  const handleLostChange = (e) => {
-    setGameState({
-      manage: "lost",
-      player: e.target.id,
-      bidsLost: e.target.value,
-    });
+  const handlePlayersLoseState = (index) => {
+    setGameState({ index: index, manage: "lost" });
+  };
+
+  const resetPlayersBid = (index) => {
+    setGameState({ index: index, manage: "resetBid" });
+  };
+
+  const resetPlayersLost = (index) => {
+    setGameState({ index: index, manage: "resetLost" });
   };
 
   function handleSubmit(e) {
@@ -63,8 +80,6 @@ function Game() {
     window.localStorage.setItem("PlayersRound", JSON.stringify(gameState.game));
   }, [innerRound]);
 
-console.log(gameState.game)
-
   return (
     <div className="main-container">
       <div className="round-info-container">
@@ -74,26 +89,14 @@ console.log(gameState.game)
           <form onSubmit={handleSubmit}>
             {players.map((p) => {
               return (
-                <div className="player-display-container">
-                  <h2>{p.name}</h2>
-                  <label htmlFor={p.key}>Apuesta</label>
-                  <input
-                    type="number"
-                    className="bid-input"
-                    id={p.key}
-                    value={p.bid}
-                    onChange={handleBidChange}
-                  />
-                
-                  <label htmlFor={p.key}>Pierde</label>
-                  <input
-                    type="number"
-                    className="bidsLost-input"
-                    id={p.key}
-                    value={p.bidsLost}
-                    onChange={handleLostChange}
-                  />
-                </div>
+                <Player
+                  state={gameState.game}
+                  setBidState={() => handlePlayersBidState(p.key)}
+                  setLoseState={() => handlePlayersLoseState(p.key)}
+                  resetBid={() => resetPlayersBid(p.key)}
+                  resetLost={() => resetPlayersLost(p.key)}
+                  index={p.key}
+                />
               );
             })}
             <button type="submit">Siguiente Ronda</button>
@@ -115,61 +118,3 @@ console.log(gameState.game)
 }
 
 export default Game;
-
-// <div className="controls">
-//   <div className="bet">
-//   <div className="label-display">
-
-//     <span>Apuesta</span>
-//     <div
-//       className={
-//         parseInt(control.bet) === 0
-//           ? "num-display"
-//           : "num-display-active"
-//       }
-//     >
-//       {control.bet}
-//     </div>
-//   </div>
-//   <div className="buttons">
-//     <button
-//       className="up-button"
-//       onClick={() => handleControl("bet", "up")}
-//     >
-//       +
-//     </button>
-//     <button
-//       className="down-button"
-//       onClick={() => handleControl("bet", "down")}
-//     >
-//       -
-//     </button>
-//   </div>
-// </div>
-// <div className="lose">
-//   <div className="label-display">
-//     <span>Pierde</span>
-//     <div
-//       className={
-//         parseInt(control.lose) === 0
-//           ? "num-display"
-//           : "num-display-active"
-//       }
-//     >
-//       {control.lose}
-//     </div>
-//   </div>
-//   <div className="buttons">
-//     <button
-//       className="up-button"
-//       onClick={() => handleControl("lose", "up")}
-//     >
-//       +
-//     </button>
-//     <button
-//       className="down-button"
-//       onClick={() => handleControl("lose", "down")}
-//     >
-//       -
-//     </button>
-//     </div>

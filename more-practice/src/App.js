@@ -32,7 +32,6 @@ function App() {
   ];
 
   function playersStateReducer(state, action) {
-    console.log("Running reducer!!!")
     switch (action.manage) {
       case "bid": {
         let newState = { ...state };
