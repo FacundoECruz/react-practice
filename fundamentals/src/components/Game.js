@@ -88,6 +88,7 @@ function Game() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             {players.map((p) => {
+              console.log(p)
               return (
                 <Player
                   state={gameState.game}
@@ -95,7 +96,7 @@ function Game() {
                   setLoseState={() => handlePlayersLoseState(p.key)}
                   resetBid={() => resetPlayersBid(p.key)}
                   resetLost={() => resetPlayersLost(p.key)}
-                  index={p.key}
+                  key={p.key}
                 />
               );
             })}
