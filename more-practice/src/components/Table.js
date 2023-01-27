@@ -1,5 +1,6 @@
 import React from "react";
 import usePlayer from "../hooks/usePlayer";
+import GameInfo from "../components/GameInfo";
 
 function Table() {
   const playersTable = usePlayer();
@@ -7,8 +8,6 @@ function Table() {
   const orderTable = playersTable.sort(function (a, b) {
     return b.score - a.score;
   });
-
-  console.log(orderTable)
 
   return (
     <div>
@@ -21,6 +20,9 @@ function Table() {
           </div>
         );
       })}
+      <div>
+        <GameInfo />
+      </div>
     </div>
   );
 }
