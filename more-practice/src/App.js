@@ -1,20 +1,32 @@
 import "./App.css";
 import React from "react";
 import PlayerContext from "./context/PlayerContext";
-import PlayerInfo from "./components/PlayerInfo";
+import Table from "./components/Table";
 
 function App() {
-  const playerData = {
-    name: 'Messi',
-    bid: 2,
-    win: true,
-    bidsLost: 0,
-  };
+  const playersTable = [
+    {
+      name: 'Facu',
+      score: 24,
+    },
+    {
+      name: 'Antone',
+      score: 32,
+    },
+    {
+      name: 'Brenda',
+      score: 20,
+    },
+    {
+      name: 'Gigi',
+      score: 43,
+    },
+  ];
   return (
-    <PlayerContext.Provider value={playerData}>
+    <PlayerContext.Provider value={playersTable}>
       <div className="App">
         <h1>Use context exercise</h1>
-        <PlayerInfo />
+        <Table />
       </div>
     </PlayerContext.Provider>
   );
