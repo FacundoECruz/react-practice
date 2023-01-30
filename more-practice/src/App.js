@@ -1,34 +1,25 @@
 import "./App.css";
 import React from "react";
-import PlayerContext from "./context/PlayerContext";
-import Table from "./components/Table";
 
 function App() {
-  const playersTable = [
-    {
-      name: 'Facu',
-      score: 24,
-    },
-    {
-      name: 'Antone',
-      score: 32,
-    },
-    {
-      name: 'Brenda',
-      score: 20,
-    },
-    {
-      name: 'Gigi',
-      score: 43,
-    },
-  ];
+
+  const [value, setValue] = React.useState(0)
+
+  const addValue = (e) => {
+    console.log(value)
+  }
+  
+  React.useEffect(() => {
+    
+  })
+
   return (
-    <PlayerContext.Provider value={playersTable}>
-      <div className="App">
-        <h1>Use context exercise</h1>
-        <Table />
-      </div>
-    </PlayerContext.Provider>
+    <>
+      <h1>Registro insulina</h1>
+      <label htmlFor="num">Nro</label>
+      <input type="number" id="num" onChange={(e) => setValue(e.target.value)} className="num-imput"/>
+      <button className="add-button" onClick={addValue}>Agregar</button>
+    </>
   );
 }
 
