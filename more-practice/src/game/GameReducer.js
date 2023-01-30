@@ -22,14 +22,15 @@ const gameReducer = (state, action) => {
     case types.addBid:
       return {
         ...state,
-        bid: state.players.bid += 1
+        bid: (state.players.bid += 1),
       };
-    case types.resetBid:
-        console.log("Reset Bid")
-        return {
-            ...state,
-            bid: 0
-        }
+    case types.resetBid: {
+      console.log("Reset Bid");
+      return {
+        ...state,
+        bid: 0
+      }
+    }
     default:
       return state;
   }

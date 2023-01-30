@@ -7,15 +7,18 @@ function Game() {
 
   const { round, players } = game;
 
+  console.log(game);
+
   return (
     <>
       <h2>Round: {round}</h2>
       <h3>{players.name}</h3>
-      <label onClick={() => dispatch({type: types.resetBid})}>Apuesta</label>
-      <p>{players.bid}</p> 
+      <p id="bid">{players.bid}</p> 
       <button onClick={() => dispatch({type: types.addBid})}>+</button>
-      <label>Pierde</label>
-      <p>{players.bidsLost}</p>
+      <button onClick={() => dispatch({type: types.resetBid})}>Reset</button>
+      <br />
+      <label htmlFor="lost">Pierde</label>
+      <p id="lost">{players.bidsLost}</p>
       <button>+</button>
     </>
   );
