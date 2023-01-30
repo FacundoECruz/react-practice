@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { GameContext } from "../game/GameProvider";
-import { types } from "../game/GameReducer"
+import { types } from "../game/GameReducer";
 
 function Game() {
   const [game, dispatch] = useContext(GameContext);
@@ -9,14 +9,27 @@ function Game() {
 
   return (
     <>
-      <h3>{game.name}</h3>
-      <p id="bid">{game.bid}</p> 
-      <button onClick={() => dispatch({type: types.addBid})}>+</button>
-      <button onClick={() => dispatch({type: types.resetBid})}>Reset</button>
+      <h2>Round: {game.round}</h2>
+      <h3>{game.player.name}</h3>
+      <label htmlFor="lost">Apuesta</label>
+      <button onClick={() => dispatch({ type: types.addBid })}>
+        {game.player.bid}
+      </button>
+      <button onClick={() => dispatch({ type: types.resetBid })}>Reset</button>
       <br />
       <label htmlFor="lost">Pierde</label>
-      <p id="lost">{game.bidsLost}</p>
-      <button>+</button>
+      <button onClick={() => dispatch({ type: types.addLost })}>
+        {game.player.bidsLost}
+      </button>
+      <button onClick={() => dispatch({ type: types.resetLost })}>Reset</button>
+      <br />
+      <button
+        onClick={() =>
+          dispatch({ type: types.nextRound })
+        }
+      >
+        Siguiente
+      </button>
     </>
   );
 }
