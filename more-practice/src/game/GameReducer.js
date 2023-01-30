@@ -6,15 +6,12 @@ const types = {
 };
 
 const initialGame = {
-  round: 1,
-  players: {
-    name: "Facu",
-    bid: 0,
-    bidsLost: 0,
-    win: false,
-    score: 0,
-    key: 0,
-  },
+  name: "Facu",
+  bid: 0,
+  bidsLost: 0,
+  win: false,
+  score: 0,
+  key: 0,
 };
 
 const gameReducer = (state, action) => {
@@ -28,8 +25,8 @@ const gameReducer = (state, action) => {
       console.log("Reset Bid");
       return {
         ...state,
-        bid: 0
-      }
+        bid: 0,
+      };
     }
     default:
       return state;
