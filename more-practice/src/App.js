@@ -1,13 +1,12 @@
 import "./App.css";
 import React from "react";
 import moment from "moment/moment";
+let insuline = [];
 
 function App() {
 
   const [value, setValue] = React.useState(0)
-
-  let insuline = [];
-
+  
   const addValue = (e) => {
     const date = moment().format('MMMM Do YYYY, h:mm:ss a');
     insuline.push(`fecha: ${date}, insulina: ${value}`)
