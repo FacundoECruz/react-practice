@@ -17,12 +17,10 @@ const initialGame = {
 const gameReducer = (state, action) => {
   switch (action.type) {
     case types.addBid:
-      return {
-        ...state,
-        bid: (state.players.bid += 1),
-      };
+      let newState = {...state}
+      newState.bid += 1
+      return newState
     case types.resetBid: {
-      console.log("Reset Bid");
       return {
         ...state,
         bid: 0,
