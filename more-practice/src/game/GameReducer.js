@@ -1,3 +1,4 @@
+import { playersData } from "../javascripts/playersData";
 const types = {
   addBid: "bid - add",
   resetBid: "bid - reset",
@@ -6,16 +7,9 @@ const types = {
   nextRound: "round - next",
 };
 
-const initialGame = {
+const gameState = {
   round: 1,
-  player: {
-    name: "Facu",
-    bid: 0,
-    bidsLost: 0,
-    win: false,
-    score: 0,
-    key: 0,
-  },
+  players: playersData
 };
 
 const gameReducer = (state, action) => {
@@ -23,30 +17,30 @@ const gameReducer = (state, action) => {
     case types.addBid: {
       return {
         ...state,
-        bid: state.player.bid += 1
+        bid: state.players.bid += 1
       };
     }
     case types.resetBid: {
       let newState = {...state}
-      newState.player.bid = 0
+      newState.players.bid = 0
       return newState;
     }
     case types.addLost: {
       return {
         ...state,
-        bidsLost: (state.player.bidsLost += 1),
+        bidsLost: (state.players.bidsLost += 1),
       };
     }
     case types.resetLost: {
       let newState = {...state}
-      newState.player.bidsLost = 0
+      newState.players.bidsLost = 0
       return newState;
     }
     case types.nextRound: {
       let newState = {...state}
       newState.round += 1
-      newState.player.bid = 0
-      newState.player.bidsLost = 0
+      newState.players.bid = 0
+      newState.players.bidsLost = 0
       return newState
     }
     default:
@@ -54,5 +48,5 @@ const gameReducer = (state, action) => {
   }
 };
 
-export { initialGame, types };
+export { gameState, types };
 export default gameReducer;

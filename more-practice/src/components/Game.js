@@ -10,16 +10,16 @@ function Game() {
   return (
     <>
       <h2>Round: {game.round}</h2>
-      <h3>{game.player.name}</h3>
+      <h3>{game.players.name}</h3>
       <label htmlFor="lost">Apuesta</label>
       <button onClick={() => dispatch({ type: types.addBid })}>
-        {game.player.bid}
+        {game.players.bid}
       </button>
       <button onClick={() => dispatch({ type: types.resetBid })}>Reset</button>
       <br />
       <label htmlFor="lost">Pierde</label>
       <button onClick={() => dispatch({ type: types.addLost })}>
-        {game.player.bidsLost}
+        {game.players.bidsLost}
       </button>
       <button onClick={() => dispatch({ type: types.resetLost })}>Reset</button>
       <br />
