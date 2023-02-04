@@ -4,8 +4,6 @@ function Table({ data }) {
     return b.score - a.score;
   });
 
-  console.log(data)
-
   return (
     <>
       <h2>Tabla de posiciones</h2>

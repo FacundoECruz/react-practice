@@ -17,6 +17,9 @@ function Game() {
       {players.map((p) => {
         return <PlayerGrid index={p.key} key={p.key} />;
       })}
+      <br />
+      <button onClick={() => dispatch({ type: types.clean })}>Limpiar</button>
+      <br />
       <button onClick={() => dispatch({ type: types.nextRound })}>Siguiente</button>
       <Table data={table}/>
     </>

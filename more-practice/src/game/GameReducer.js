@@ -7,6 +7,7 @@ const types = {
   addLost: "lost - add",
   resetLost: "lost - reset",
   nextRound: "round - next",
+  clean: "round - clean"
 };
 
 const gameState = {
@@ -44,6 +45,14 @@ const gameReducer = (state, action) => {
       const table = nextRound(newState.players)
       newState.table = table
       newState.round = newState.round += 1
+      return newState
+    }
+    case types.clean: {
+      let newState = {...state}
+      newState.players.map(p => {
+        p.bid = 0
+        p.bidsLost = 0
+      })
       return newState
     }
     default:
