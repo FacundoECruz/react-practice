@@ -1,14 +1,16 @@
-import calculateRound from "./calculateRound";
 
-function nextRound(state) {
-  let stateCopy = { ...state };
-  let newState = calculateRound(stateCopy.players)
-  newState.round += 1;
-  newState.players.map(p => {
-    p.bid = 0;
-    p.bidsLost = 0;
+function nextRound(tableState) {
+  const pointsForWin = 5;
+
+  tableState.map(p => {
+    if (p.bidsLost === 0) {
+      p.score = p.score + pointsForWin + p.bid;
+    } else {
+      p.score = p.score - p.bidsLost;
+    }
   })
-  return newState;
+  console.log(tableState)
+  return tableState;
 }
 
 export default nextRound;

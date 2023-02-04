@@ -40,7 +40,9 @@ const gameReducer = (state, action) => {
       return newState;
     }
     case types.nextRound: {
-      let newState = nextRound(state)
+      let newState = {...state}
+      const table = nextRound(newState.players)
+      newState.table = table
       return newState
     }
     default:
