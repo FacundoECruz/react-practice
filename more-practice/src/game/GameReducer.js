@@ -17,23 +17,23 @@ const gameReducer = (state, action) => {
     case types.addBid: {
       return {
         ...state,
-        bid: state.players.bid += 1
+        bid: state.players[action.index].bid += 1
       };
     }
     case types.resetBid: {
       let newState = {...state}
-      newState.players.bid = 0
+      newState.players[action.index].bid = 0
       return newState;
     }
     case types.addLost: {
       return {
         ...state,
-        bidsLost: (state.players.bidsLost += 1),
+        bidsLost: (state.players[action.index].bidsLost += 1),
       };
     }
     case types.resetLost: {
       let newState = {...state}
-      newState.players.bidsLost = 0
+      newState.players[action.index].bidsLost = 0
       return newState;
     }
     case types.nextRound: {
