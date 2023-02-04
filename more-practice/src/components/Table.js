@@ -1,4 +1,10 @@
-function Table({data}) {
+function Table({ data }) {
+
+  data.sort(function(a, b) {
+    return b.score - a.score;
+  });
+
+  console.log(data)
 
   return (
     <>

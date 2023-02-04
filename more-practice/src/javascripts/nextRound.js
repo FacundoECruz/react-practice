@@ -9,7 +9,6 @@ function nextRound(tableState) {
       p.score = p.score - p.bidsLost;
     }
   })
-  console.log(tableState)
   return tableState;
 }
 

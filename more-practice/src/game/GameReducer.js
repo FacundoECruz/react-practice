@@ -43,6 +43,7 @@ const gameReducer = (state, action) => {
       let newState = {...state}
       const table = nextRound(newState.players)
       newState.table = table
+      newState.round = newState.round += 1
       return newState
     }
     default:
