@@ -8,7 +8,7 @@ function Table({ data }) {
     <>
       <h2>Tabla de posiciones</h2>
       {data.map(p => {
-       return <p>{p.name}: {p.score}</p>
+       return <p key={p.key.toString()}>{p.name}: {p.score}</p>
       })}
     </>
   );

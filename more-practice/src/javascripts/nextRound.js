@@ -1,4 +1,3 @@
-
 function nextRound(tableState) {
   const pointsForWin = 5;
 
