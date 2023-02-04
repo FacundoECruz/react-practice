@@ -14,7 +14,7 @@ function Game() {
     <>
       <h2>Round: {round}</h2>
       {players.map(p => {
-        return <PlayerGrid key={p.key}/>
+        return <PlayerGrid index={p.key} key={p.key}/>
       })}
       <button
         onClick={() =>
