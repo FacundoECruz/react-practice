@@ -2,29 +2,23 @@ import { useContext } from "react";
 import { GameContext } from "../game/GameProvider";
 import { types } from "../game/GameReducer";
 import PlayerGrid from "./PlayerGrid";
-import Table from "./Table"
+import Table from "./Table";
 
 function Game() {
   const [game, dispatch] = useContext(GameContext);
 
-  const {round, players} = game;
+  const { round, players, table } = game;
 
-  console.log(game);
+  // console.log(game);
 
   return (
     <>
       <h2>Round: {round}</h2>
-      {players.map(p => {
-        return <PlayerGrid index={p.key} key={p.key}/>
+      {players.map((p) => {
+        return <PlayerGrid index={p.key} key={p.key} />;
       })}
-      <button
-        onClick={() =>
-          dispatch({ type: types.nextRound })
-        }
-      >
-        Siguiente
-      </button>
-      <Table />
+      <button onClick={() => dispatch({ type: types.nextRound })}>Siguiente</button>
+      <Table data={table}/>
     </>
   );
 }

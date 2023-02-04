@@ -11,7 +11,8 @@ const types = {
 
 const gameState = {
   round: 1,
-  players: playersData
+  players: playersData,
+  table: []
 };
 
 const gameReducer = (state, action) => {

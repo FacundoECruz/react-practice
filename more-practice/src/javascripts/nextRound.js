@@ -1,13 +1,13 @@
-function calculateTable(players) {
-  
-}
+import calculateRound from "./calculateRound";
 
 function nextRound(state) {
   let stateCopy = { ...state };
-  let newState = calculateTable(stateCopy.players)
+  let newState = calculateRound(stateCopy.players)
   newState.round += 1;
-  newState.players.bid = 0;
-  newState.players.bidsLost = 0;
+  newState.players.map(p => {
+    p.bid = 0;
+    p.bidsLost = 0;
+  })
   return newState;
 }
 
