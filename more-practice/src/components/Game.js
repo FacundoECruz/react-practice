@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { GameContext } from "../game/GameProvider";
 import { types } from "../game/GameReducer";
 import PlayerGrid from "./PlayerGrid";
+import Table from "./Table"
 
 function Game() {
   const [game, dispatch] = useContext(GameContext);
@@ -23,6 +24,7 @@ function Game() {
       >
         Siguiente
       </button>
+      <Table />
     </>
   );
 }

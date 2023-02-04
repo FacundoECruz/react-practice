@@ -1,4 +1,6 @@
 import { playersData } from "../javascripts/playersData";
+import nextRound from "../javascripts/nextRound";
+
 const types = {
   addBid: "bid - add",
   resetBid: "bid - reset",
@@ -37,10 +39,7 @@ const gameReducer = (state, action) => {
       return newState;
     }
     case types.nextRound: {
-      let newState = {...state}
-      newState.round += 1
-      newState.players.bid = 0
-      newState.players.bidsLost = 0
+      let newState = nextRound(state)
       return newState
     }
     default:
