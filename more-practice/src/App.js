@@ -1,16 +1,10 @@
-import "./App.css";
-import React from "react";
-import GameProvider from "./game/GameProvider";
-import Game from "./components/Game"
+import './App.css';
 
 function App() {
-
   return (
-    <>
-      <GameProvider>
-        <Game />
-      </GameProvider>
-    </>
+    <div className="App">
+      <h1>More Practice</h1>
+    </div>
   );
 }
 
