@@ -1,10 +1,11 @@
 import table from "../javascripts/tableData";
 
-function Names() {
-  return(
-    table.map(n => {
+function Names(predicate) {
+  return(predicate 
+    ? table.map(n => {
       return <div key={n.name}>{n.name}, {n.score}</div>
     })
+    : null
   )
 }
 

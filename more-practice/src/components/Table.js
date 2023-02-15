@@ -1,10 +1,9 @@
-function Table({ children }) {
-  return (
-    <>
-      <h1>Table</h1>
-      {children}
-    </>
-  );
-}
+import React from "react";
+
+function Table({predicate, children }) {
+    return React.Children.map(children, child => {
+        return React.cloneElement(child, {predicate})
+      })
+    }
 
 export default Table;
