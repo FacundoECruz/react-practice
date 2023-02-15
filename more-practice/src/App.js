@@ -6,12 +6,10 @@ import Table from "./components/Table";
 
 function App() {
   return (
-    // <Table>
-    <>
+    <Table>
       <Names />
       <History />
-    </>
-    // </Table>
+    </Table>
   );
 }
 
