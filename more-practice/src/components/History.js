@@ -1,6 +1,6 @@
 import table from "../javascripts/tableData";
 
-function History(predicate) {
+function History({predicate}) {
   return(predicate 
     ? null
     : table.map(n => {
