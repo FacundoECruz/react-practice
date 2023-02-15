@@ -3,22 +3,24 @@ import React from "react";
 import Names from "./components/Names";
 import History from "./components/History";
 import Table from "./components/Table";
+import Control from "./components/Control";
 
 function App() {
 
-  const [toggle, setToggle] = React.useState(true)
+  const [display, setDisplay] = React.useState(true)
 
-  function handleClick() {
-    setToggle(!toggle)
+  function handleCheck() {
+    setDisplay(!display)
   }
 
   React.useEffect(() => {
-    console.log(toggle)
+    console.log(display)
   })
 
   return (
-    <Table predicate={toggle}>
-      <h1 onClick={handleClick}>Table</h1>
+    <Table predicate={display}>
+      <h1>Table</h1>
+      <Control />
       <Names />
       <History />
     </Table>
