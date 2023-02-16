@@ -4,17 +4,25 @@ import table from "./javascripts/table";
 
 function App() {
 
-  
+  const [selected, setSelected] = React.useState(null)
+
+  const toggle = (i) => {
+    if(selected === i){
+      return setSelected(null)
+    }
+    setSelected(i)
+  }
 
   return (
     <div className="wrapper">
       <div className="accordion">
         {table.map((p, i) => {
           return <div className="item">
-            <div className="name">
-              <h2>{p.name} {p.score}</h2>
+            <div className="name" onClick={() => toggle(i)}>
+              <p key={p.name}>{p.name} {p.score}</p>
+              <span>{selected === i ? "-" : "+"}</span>
             </div>
-            <div className="history">{p.history}</div>
+            <div className={selected === i ? "history-show" : "history"}>{p.history}</div>
           </div>;
         })}
       </div>
