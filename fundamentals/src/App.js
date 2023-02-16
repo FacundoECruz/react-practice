@@ -26,7 +26,7 @@ function App() {
               </div>
               <div className={selected === i ? "history-show" : "history"}>
                 {p.history.map((n) => {
-                  return <p>{n}</p>
+                  return <p className={n < 0 ? "lost" : "won"}>{n}</p>
                 })}
               </div>
             </div>

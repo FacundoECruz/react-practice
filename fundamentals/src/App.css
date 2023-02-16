@@ -30,3 +30,11 @@ html, body {
     justify-content: space-evenly;
     transition: all 0.5s cubic-bezier(1,0,1,0);
 }
+
+.won{
+    color: green;
+}
+
+.lost{
+    color: red;
+}
