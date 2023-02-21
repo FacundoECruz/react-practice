@@ -5,7 +5,7 @@ function App() {
 
   function Form() {
 
-    const [error, setError] = React.useState(null)
+    const [username, setUsername] = React.useState("")
 
     const handleSubmit = event => {
       event.preventDefault()
@@ -25,16 +25,14 @@ function App() {
 
     const handleChange = event => {
       const {value} = event.target
-      const isCapitalized = value === capitalize(value)
-      setError(isCapitalized ? null : "username must be capitalized")
+      setUsername(capitalize(value))
     }
 
     return(
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
-          <input id="username" type="text" onChange={handleChange}/>
-          <div style={{color: "red"}}>{error}</div>
+          <input value={username} id="username" type="text" onChange={handleChange}/>
         </div>
         <div>
           <label htmlFor="email">Email:</label>
@@ -44,7 +42,7 @@ function App() {
           <label htmlFor="password">Password:</label>
           <input id="password" type="password" />
         </div>
-        <button disabled={Boolean(error)} type="submit">Submit</button>
+        <button type="submit">Submit</button>
       </form>
     )
   }
