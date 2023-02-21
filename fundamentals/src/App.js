@@ -1,40 +1,57 @@
 import React from "react";
 import "./App.css";
-import table from "./javascripts/table";
 
 function App() {
-  const [selected, setSelected] = React.useState(null);
 
-  const toggle = (i) => {
-    if (selected === i) {
-      return setSelected(null);
+  function Form() {
+
+    const [error, setError] = React.useState(null)
+
+    const handleSubmit = event => {
+      event.preventDefault()
+      const data = {
+        username: event.target.elements.username.value,
+        email: event.target.elements.email.value,
+        password: event.target.elements.password.value,
+      }
+      console.log(data)
     }
-    setSelected(i);
-  };
+    
+    const capitalize = str => {
+      const capitalized = str.charAt(0).toUpperCase() + str.slice(1)
+      console.log(capitalized)
+      return capitalized
+    }
 
-  return (
-    <div className="wrapper">
-      <div className="accordion">
-        {table.map((p, i) => {
-          return (
-            <div className="item">
-              <div className="name" onClick={() => toggle(i)}>
-                <p key={p.name}>
-                  {p.name} {p.score}
-                </p>
-                <span>{selected === i ? "-" : "+"}</span>
-              </div>
-              <div className={selected === i ? "history-show" : "history"}>
-                {p.history.map((n) => {
-                  return <p className={n < 0 ? "lost" : "won"}>{n}</p>
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+    const handleChange = event => {
+      const {value} = event.target
+      const isCapitalized = value === capitalize(value)
+      setError(isCapitalized ? null : "username must be capitalized")
+    }
+
+    return(
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input id="username" type="text" onChange={handleChange}/>
+          <div style={{color: "red"}}>{error}</div>
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input id="email" type="email" />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input id="password" type="password" />
+        </div>
+        <button disabled={Boolean(error)} type="submit">Submit</button>
+      </form>
+    )
+  }
+
+  return <div className="App">
+    <Form />
+  </div>;
 }
 
 export default App;

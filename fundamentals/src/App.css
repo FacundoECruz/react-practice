@@ -4,37 +4,3 @@ html, body {
     box-sizing: border-box;
     background-color: #fff;   
 }
-
-.accordion{
-    width: 500px;
-}
-
-.name{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.history{
-    display: flex;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.5s cubic-bezier(0,1,0,1);
-}
-
-.history-show{
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    transition: all 0.5s cubic-bezier(1,0,1,0);
-}
-
-.won{
-    color: green;
-}
-
-.lost{
-    color: red;
-}
