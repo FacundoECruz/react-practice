@@ -1,4 +1,5 @@
 import { capitalize } from "../components/testFunction"
+import { response } from "../components/testFunction"
 
 describe('funciones del componente Greeting', () => {
     describe('capitalize', () => {
@@ -10,6 +11,10 @@ describe('funciones del componente Greeting', () => {
             expect(capitalize('antone')).toBe('Antone');
         });
 
-        
+    describe('response', () => {
+        test('debe retornar una respuesta al estado', () => {
+            expect(response(1)).toBe('1/5')
+        })
+    })
     })
 })

@@ -5,14 +5,18 @@ export function capitalize(name) {
   return capitalizedName;
 }
 
+export function response(value) {
+
+}
+
 function Greeting() {
   const [name, setName] = useState("");
   const inputRef = useRef();
+  const states = [1, 2, 3, 4, 5]
 
   function handleSubmit(event) {
     event.preventDefault()
     const inputText = capitalize(inputRef.current.value);
-    console.log(inputText)
     setName(inputText);
   }
 
@@ -25,6 +29,11 @@ function Greeting() {
           id="name"
           type="text"
         />
+        <br />
+        {states.map((s) => {
+          return <input type="checkbox" id={s} key={s}/>
+        })}
+        <br />
         <button type="submit">Saludar</button>
       </form>
       <h1>Hola {name}</h1>
