@@ -1,24 +1,32 @@
-import{useState, useRef} from 'react'
+import { useState, useRef } from "react";
 
 export function capitalize(name) {
-  const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+  const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   return capitalizedName;
 }
 
 function Greeting() {
+  const [name, setName] = useState("");
+  const inputRef = useRef();
 
-  const [name, setName] = useState('')
-  const inputRef = useRef()
-
-  function handleChange() {
-    const inputText = capitalize(inputRef.current.value)
-    setName(inputText)
+  function handleSubmit(event) {
+    event.preventDefault()
+    const inputText = capitalize(inputRef.current.value);
+    console.log(inputText)
+    setName(inputText);
   }
 
   return (
     <div>
-      <label>Nombre: </label>
-      <input ref={inputRef} id="name" type="text" value={name} onChange={handleChange}/>
+      <form onSubmit={handleSubmit}>
+        <label>Nombre: </label>
+        <input
+          ref={inputRef}
+          id="name"
+          type="text"
+        />
+        <button type="submit">Saludar</button>
+      </form>
       <h1>Hola {name}</h1>
     </div>
   );

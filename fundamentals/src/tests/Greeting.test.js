@@ -9,5 +9,7 @@ describe('funciones del componente Greeting', () => {
         test('debe retornar el string capitalizado', () => {
             expect(capitalize('antone')).toBe('Antone');
         });
+
+        
     })
 })
