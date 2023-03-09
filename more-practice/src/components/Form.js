@@ -19,7 +19,7 @@ function Form() {
     <>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username: </label>
-        <input ref={inputRef} type="text" />
+        <input ref={inputRef} type="text" name="username"/>
         <button type="submit">Submit</button>
       </form>
 
