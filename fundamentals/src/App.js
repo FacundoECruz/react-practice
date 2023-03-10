@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import Greeting from "./components/testFunction";
+import New from "./components/New";
 
 function App() {
   return <div className="App">
-    <Greeting />
+    <h1>News</h1>
+    <New />
   </div>;
 }
 
