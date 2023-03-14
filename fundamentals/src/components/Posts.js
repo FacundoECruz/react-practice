@@ -19,7 +19,7 @@ function Post() {
   return post.map((d) => {
     return (
       <div className="post-container" key={d.id}>
-        <h2>{d.title}</h2>
+        <h3>{d.title}</h3>
       </div>
     );
   });

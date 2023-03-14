@@ -1,5 +1,17 @@
 .posts-list-container {
   width: 40%;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  display: flex;
+  flex-direction: column; 
 }
 
+.post-container {
+  margin: 0;
+  padding: 0;
+}
+
+.post-container:hover {
+  color: #B6E388;
+  transform: translate(2px, 2px);
+  transition: all 0.2s ease-out;
+}
