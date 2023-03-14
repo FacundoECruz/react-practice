@@ -2,16 +2,22 @@ import { useEffect, useState } from "react";
 
 function New() {
 
-  const [news, setNews] = useState([])
+  const [data, setData] = useState([])
+
+  const apiGet = () => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      setData(json)
+    })
+  }
 
   useEffect(() => {
-    async function fetchData()  {
-      const resp = await fetch(`https://newsapi.org/v2/everything`, {
-        
-      })
-  
-    }
-  })
+    apiGet()
+  }, [])
+    
+
 
   return(
     <h2>new.title</h2>
