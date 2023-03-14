@@ -6,7 +6,7 @@
 }
 
 .post-container {
-  color: #fff;
+  color: #0ff;
   margin: 0;
   padding: 0;
 }
@@ -15,4 +15,29 @@
   color: #B6E388;
   transform: translate(2px, 2px);
   transition: all 0.2s ease-out;
+}
+
+#user-id {
+  color: #000;
+  margin-left: 3%;
+}
+
+#user-id:hover {
+  color: #fff;
+  transition: all 0.2s ease-out;
+}
+
+.content{
+  display: flex;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0,1,0,1);
+}
+
+.content-show{
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  transition: all 0.9s cubic-bezier(1,0,1,0);
 }
