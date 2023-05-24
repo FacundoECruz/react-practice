@@ -1,15 +1,11 @@
 import React from "react";
-import "./App.css";
-import Data from "./components/Posts";
-import './stylesheets/posts.css'
+// import "./App.css";
+import Form from "./components/Form";
 
 function App() {
   return (
     <div className="App">
-      <h1>SocioloGists</h1>
-      <div className="posts-list-container">
-        <Data />
-      </div>
+      <Form />
     </div>
   );
 }
